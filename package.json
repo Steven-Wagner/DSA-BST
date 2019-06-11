@@ -1,0 +1,12 @@
+{
+  "name": "dsa-bst",
+  "version": "1.0.0",
+  "description": "Boinary Search Tree Practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node index.js"
+  },
+  "author": "Steven Wagner",
+  "license": "ISC"
+}
