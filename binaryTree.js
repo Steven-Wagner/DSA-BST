@@ -1,3 +1,5 @@
+const Queue = require('./queue');
+
 class BinarySearchTree {
     constructor(key = null, value = null, parent = null) {
         this.key = key;
@@ -5,6 +7,61 @@ class BinarySearchTree {
         this.parent = parent;
         this.left = null;
         this.right = null;
+    }
+
+    inOrder(values=[]) {
+        if (this.left) {
+            values = this.left.inOrder(values);
+        }
+        values.push(this.value);
+
+        if (this.right) {
+            values = this.right.inOrder(values);
+        }
+        return values;
+    }
+    
+    postOrder(values=[]) {
+        if (this.left) {
+            values = this.left.postOrder(values);
+        }
+
+        if (this.right) {
+            values = this.right.postOrder(values);
+        }
+        values.push(this.value);
+        return values;
+    }
+    
+    preOrder(values=[]) {
+        values.push(this.value);
+        if (this.left) {
+            values = this.left.preOrder(values);
+        }
+
+        if (this.right) {
+            values = this.right.preOrder(values);
+        }
+        return values;
+    }
+
+    bfs(values=[]) {
+        const queue = new Queue();
+
+        while (queue.length) {
+            const node = queue.dequeue(); //remove from the queue
+            values.push(node.value); // add that value from the queue to an array
+
+            if (node.left) {
+                queue.enqueue(node.left); //add left child to the queue
+            }
+
+            if (node.right) {
+                queue.enqueue(node.right); // add right child to the queue
+            }
+        }
+
+        return values;
     }
 
     insert(key, value) {
